@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <div class="nav-bar"></div>
+  <div id="app">
+
+<div class="product">
+<div class="product-image">
+  <img v-bind:src="image" v-bind:alt="alt">
+  </div>
+  <div class="product-info">
+  <h2>{{title}}</h2>
+  <p v-if="inventory > 10"> In Stock</p>
+  <p v-else-if="inventory <= 10 && inventory > 0 ">Almost Sold out</p>
+  <p v-else>Out of Stock</p>
+  <ul>
+  	<li v-for="detail in details">{{detail}}</li>
+  </ul>
+
+  <div class="cart">
+  	<p>{{cart}}</p>
+  </div>
+
+  <div v-for="variant in variants":key="variant.variantId"
+  class="color-box"
+  :style="{backgroundColor:variant.variantColor}"
+  @mouseover="updateProduct(variant.variantImage)">
+  
+  </div>
+<button v-on:click="AddToCart" :disabled="!inStock"
+:class="{disabledButton:  !inStock}">Add cart</button>
+   </div>
+
+</div>
+  
+
+
+
+
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="main.js"></script>
+
+
+  </body>
+</html>
